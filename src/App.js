@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardGrid, Container, Header } from "./Elements";
+import Modal from './Modal'
+
 import "./App.css";
 import Menu from "./Menu";
 import blue from "./blue.png";
@@ -8,14 +11,38 @@ import black from "./black.png";
 import green from "./green.png";
 
 function App() {
+
+  const [value, setValue] = useState(0);
+  const [toggle, setToggle] = useState(false);
+
+
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 1
+      }}
+    >
       <Header>
         <Menu />
         <h1>Header</h1>
       </Header>
       <Container>
-        <h2>Super Cool</h2>
+        <motion.h2
+          animate={{
+            x: value * 10 + 'px',
+          }}
+        >Super Cool</motion.h2>
+        <input type="range" name="range" min='-100' max='100' value={value} onChange={e => setValue(e.target.value)} />
+        <button onClick={() => setToggle(true)}>Toggle</button>
+
+        <Modal toggle={toggle} setToggle={setToggle}>
+          <Card style={{ background: "var(--purp)" }}>
+            <h3>Some card</h3>
+            <img src={purp} />
+          </Card>
+        </Modal>
         <CardGrid>
           <Card style={{ background: "var(--purp)" }}>
             <h3>Some card</h3>
@@ -35,7 +62,7 @@ function App() {
           </Card>
         </CardGrid>
       </Container>
-    </div>
+    </motion.div>
   );
 }
 
