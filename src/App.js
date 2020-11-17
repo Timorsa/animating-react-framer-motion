@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardGrid, Container, Header } from "./Elements";
-import Modal from './Modal'
+import Modal from './Modal';
+import Accordion from './Accordion'
 
 import "./App.css";
 import Menu from "./Menu";
@@ -21,7 +22,7 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{
-        duration: 1
+        duration: 1,
       }}
     >
       <Header>
@@ -34,8 +35,8 @@ function App() {
             x: value * 10 + 'px',
           }}
         >Super Cool</motion.h2>
-        <input type="range" name="range" min='-100' max='100' value={value} onChange={e => setValue(e.target.value)} />
         <button onClick={() => setToggle(true)}>Toggle</button>
+        <input type="range" name="range" min='-100' max='100' value={value} onChange={e => setValue(e.target.value)} />
 
         <Modal toggle={toggle} setToggle={setToggle}>
           <Card style={{ background: "var(--purp)" }}>
@@ -43,6 +44,8 @@ function App() {
             <img src={purp} />
           </Card>
         </Modal>
+
+        <Accordion />
         <CardGrid>
           <Card style={{ background: "var(--purp)" }}>
             <h3>Some card</h3>
