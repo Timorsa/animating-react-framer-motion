@@ -20,7 +20,7 @@ const Accordion = () => {
                             variants={variants}
                             style={{ overflow: 'hidden' }}
                             initial='closed'
-                            animate='opened'
+                            animate='open'
                             exit='closed'
                         >
                             <p>

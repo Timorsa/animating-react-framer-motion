@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardGrid, Container, Header } from "./Elements";
+
+import Nav from './Nav';
+import Menu from "./Menu";
 import Modal from './Modal';
 import Accordion from './Accordion'
 
 import "./App.css";
-import Menu from "./Menu";
 import blue from "./blue.png";
 import purp from "./purp.png";
 import black from "./black.png";
@@ -15,6 +17,7 @@ function App() {
 
   const [value, setValue] = useState(0);
   const [toggle, setToggle] = useState(false);
+  const [openNav, setOpenNav] = useState(false);
 
 
   return (
@@ -26,7 +29,8 @@ function App() {
       }}
     >
       <Header>
-        <Menu />
+        <Menu onClick={() => setOpenNav(true)} />
+        <Nav openNav={openNav} setOpenNav={setOpenNav} />
         <h1>Header</h1>
       </Header>
       <Container>
