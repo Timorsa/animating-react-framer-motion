@@ -5,6 +5,7 @@ import { Card, CardGrid, Container, Header } from "./Elements";
 import Nav from './Nav';
 import Menu from "./Menu";
 import Modal from './Modal';
+import Squares from './Squares'
 import Accordion from './Accordion'
 
 import "./App.css";
@@ -37,6 +38,7 @@ function App() {
         <h1>Header</h1>
       </Header>
       <Container>
+        <Squares />
         <motion.h2
           animate={{
             x: value * 10 + 'px',
