@@ -4,12 +4,45 @@ import styled from 'styled-components'
 
 const variants = {
     open: {
-        x: 0
+        x: 0,
+
     },
     closed: {
-        x: '-100%'
+        x: '-100%',
+        transition: {
+            delay: 1
+        }
     }
 }
+
+const liVariants = {
+    open: {
+        y: 0,
+        opacity: 1,
+   
+    },
+    closed: {
+        y: -20,
+        opacity: 0,
+
+    },
+}
+
+const ulVariants = {
+    open: {
+        transition: {
+            staggerChildren: .3,
+        },
+
+    },
+    closed: {
+    },
+
+}
+
+const links = [
+    'one', 'two', 'three', 'four'
+]
 
 const Nav = ({ openNav, setOpenNav }) => {
     return (
@@ -17,15 +50,19 @@ const Nav = ({ openNav, setOpenNav }) => {
             variants={variants}
             initial='closed'
             animate={openNav ? 'open' : 'closed'}
-
+            transition={{
+                damping: 300
+            }}
         >
             <button onClick={() => setOpenNav(false)}>Close</button>
-            <ul>
-                <li><a href="#">One</a></li>
-                <li><a href="#">Two</a></li>
-                <li><a href="#">Three</a></li>
-                <li><a href="#">Four</a></li>
-            </ul>
+            <motion.ul
+                variants={ulVariants}
+            >
+                {links.map(link => (
+                    <motion.li key={link} variants={liVariants}><a href="#">{link}</a></motion.li>
+                ))}
+
+            </motion.ul>
         </MenuNav>
     )
 }
@@ -46,12 +83,18 @@ const MenuNav = styled(motion.nav)`
     }
     li {
         padding: 0;
-        margin: 0;
+        margin: 0 0 1rem;
     }
     a {
         text-decoration: none;
         color: #fff;
         font-weight: 700;
+        border-bottom: 2px transparent solid;
+        transition: .3s ease border;
+        &:hover{
+            border-bottom: 2px var(--blue) solid;
+
+        }
     }
 `
 
