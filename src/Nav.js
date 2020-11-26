@@ -19,7 +19,7 @@ const liVariants = {
     open: {
         y: 0,
         opacity: 1,
-   
+
     },
     closed: {
         y: -20,
@@ -30,12 +30,17 @@ const liVariants = {
 
 const ulVariants = {
     open: {
+        x: 120,
         transition: {
             staggerChildren: .3,
+            delayChildren: .2,
+            staggerDirection: -1, // 1 forwards , -1 backwards,
+            when: 'afterChildren' // "afterChildren" , "beforeChildren"
         },
 
     },
     closed: {
+        scale: 1
     },
 
 }
